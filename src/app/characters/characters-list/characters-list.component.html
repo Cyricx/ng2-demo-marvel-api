@@ -21,6 +21,14 @@
     <td></td>
     <td></td>
     <td></td>
-    <td>{{character.modified}}</td>
+    <!--
+      pipes are similar in syntax to angular 1 filters, but the use case is far more specific
+
+      Pipes are only used to format data, not to change the structure of an object. 
+      In angular 1 filters were used to sort and filter data dynamically - which caused huge loss in memory 
+        during the digest cycle.
+      If you wish to sort or filter, you will have to do it manually leaving the main data in a pristine state
+    -->
+    <td>{{character.modified | date: 'MM/dd/yyyy'}}</td>
   </tr>
 </table>
