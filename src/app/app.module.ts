@@ -1,8 +1,12 @@
+// angular
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+// 3rd party
+import { AlertModule } from 'ng2-bootstrap';
+// local
 import { AppComponent } from './app.component';
 import { CharactersListComponent } from './characters/characters-list/characters-list.component';
 import { CharactersService } from './characters/shared/characters.service'; // cli does not automatically import services
@@ -27,7 +31,8 @@ import { CharactersService } from './characters/shared/characters.service'; // c
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AlertModule.forRoot() // the forRoot method can allow us to pass in config options
   ],
   providers: [
     CharactersService
