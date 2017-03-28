@@ -1,0 +1,26 @@
+<p>
+  characters-list works!
+</p>
+{{characters.length}}
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th># of Comics</th>
+    <th># of Stories</th>
+    <th># of Events</th>
+    <th># of Series</th>
+    <th>Last Modified</th>
+  </tr>
+  <!--* is used as a prefix for structural directives like *ngFor and *ngIf-->
+  <tr *ngFor="let character of characters">
+    <td>{{character.id}}</td>
+    <td>{{character.name}}</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>{{character.modified}}</td>
+  </tr>
+</table>

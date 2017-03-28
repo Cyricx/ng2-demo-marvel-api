@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { CharactersListComponent } from './characters/characters-list/characters-list.component';
+import { CharactersService } from './characters/shared/characters.service'; // cli does not automatically import services
 
 /*
   Components - building blocks of an application (custom html elements)
@@ -19,14 +21,17 @@ import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CharactersListComponent // components are loaded through declarations
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [
+    CharactersService
+  ], // services are loaded in providers
   bootstrap: [AppComponent]
 })
 export class AppModule { }
