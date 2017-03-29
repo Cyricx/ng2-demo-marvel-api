@@ -10,6 +10,7 @@ import { AlertModule } from 'ng2-bootstrap';
 import { AppComponent } from './app.component';
 import { CharactersListComponent } from './characters/characters-list/characters-list.component';
 import { CharactersService } from './characters/shared/characters.service'; // cli does not automatically import services
+import { SettingsService } from './settings.service';
 
 /*
   Components - building blocks of an application (custom html elements)
@@ -35,7 +36,8 @@ import { CharactersService } from './characters/shared/characters.service'; // c
     AlertModule.forRoot() // the forRoot method can allow us to pass in config options
   ],
   providers: [
-    CharactersService
+    CharactersService,
+    SettingsService
   ], // services are loaded in providers
   bootstrap: [AppComponent]
 })

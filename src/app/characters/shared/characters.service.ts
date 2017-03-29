@@ -1,13 +1,44 @@
 import { Injectable } from '@angular/core';
+import { Http, RequestOptions, URLSearchParams } from '@angular/http';
+import { SettingsService } from '../../settings.service';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class CharactersService {
 
-  constructor() { }
+  constructor(private http: Http, private settings: SettingsService) { }
 
   // typescript does have private and public, unlike c# the presumed is public
-  getCharacters(): any[] {
-    return CHARACTERS;
+  getCharacters(): Observable<any> {
+
+    // need request options and url parameters
+    const params = new URLSearchParams();
+    params.set('apikey', this.settings.apikey);
+    params.set('nameStartsWith', 'doctor');
+
+    const requestOptions = new RequestOptions();
+    requestOptions.search = params;
+
+    /*
+    Promises:
+      Returns a single value
+      Can not cancel with
+
+    Observables:
+      Can return multiple values over time (like a stream of data)
+      Can cancel
+      Supports man operators and functions like map, filter, reduce etc
+    */
+    /*
+      Arrow functions have two syntax
+      variable => single line assignment
+      (variable) => { function code }
+    */
+    return this.http.get('http://gateway.marvel.com/v1/public/characters', requestOptions).map((response) => {
+      // .json() converts the response
+      return response.json().data.results;
+    });
+    //return CHARACTERS;
   }
 }
 

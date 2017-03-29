@@ -19,7 +19,11 @@ export class CharactersListComponent implements OnInit {
   constructor (private charactersService: CharactersService) {}
 
   ngOnInit() {
-    this.characters = this.charactersService.getCharacters();
+    // this.characters = this.charactersService.getCharacters();
+    // you must subscribe to an observable to be notified when it is complete
+    // or when new data comes in
+    // Arrow Functions are similar visually to C# Lambda Operators
+    this.charactersService.getCharacters().subscribe(result => this.characters = result);
   }
 
 }
