@@ -14,6 +14,7 @@ import { CharactersService } from './characters/shared/characters.service'; // c
 import { SettingsService } from './settings.service';
 import { HighlightDirective } from './common/highlight.directive';
 import { appRoutes } from './app.routes';
+import { CharacterViewComponent } from './characters/character-view/character-view.component';
 
 /*
   Components - building blocks of an application (custom html elements)
@@ -31,7 +32,8 @@ import { appRoutes } from './app.routes';
   declarations: [
     AppComponent,
     CharactersListComponent,
-    HighlightDirective // components are loaded through declarations
+    HighlightDirective,
+    CharacterViewComponent // components are loaded through declarations
   ],
   imports: [
     BrowserModule,
