@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, URLSearchParams } from '@angular/http';
+import { Http, RequestOptions, URLSearchParams, Response } from '@angular/http';
 import { SettingsService } from '../../settings.service';
 import { Observable } from 'rxjs/Rx';
+// angular doesn't need to inject or use interfaces for html compilation or
+// object construction, so module doesn't care
+import { ICharacterResults } from '../shared/characters-models';
 
 @Injectable()
 export class CharactersService {
@@ -9,7 +12,7 @@ export class CharactersService {
   constructor(private http: Http, private settings: SettingsService) { }
 
   // typescript does have private and public, unlike c# the presumed is public
-  getCharacters(): Observable<any> {
+  getCharacters(): Observable<ICharacterResults> {
 
     // need request options and url parameters
     const params = new URLSearchParams();
@@ -34,9 +37,14 @@ export class CharactersService {
       variable => single line assignment
       (variable) => { function code }
     */
-    return this.http.get('http://gateway.marvel.com/v1/public/characters', requestOptions).map((response) => {
+    return this.http.get('http://gateway.marvel.com/v1/public/characters', requestOptions).map((response: Response) => {
       // .json() converts the response
-      return response.json().data.results;
+      // return response.json().data.results;
+      const data = response.json().data;
+      return {
+        characters: data.results,
+        total: data.total
+      };
     });
     //return CHARACTERS;
   }

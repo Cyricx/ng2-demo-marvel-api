@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CharactersService } from '../shared/characters.service';
+import { ICharacter, ICharacterResults } from '../shared/characters-models';
 
 @Component({
   selector: 'app-characters-list',
@@ -7,7 +8,8 @@ import { CharactersService } from '../shared/characters.service';
   styleUrls: ['./characters-list.component.css']
 })
 export class CharactersListComponent implements OnInit {
-  characters: any[];
+  characters: ICharacter[];
+  total: number;
 
   // services must be injected through constructor injection
   // a shortcut for that is private variable: type
@@ -23,7 +25,10 @@ export class CharactersListComponent implements OnInit {
     // you must subscribe to an observable to be notified when it is complete
     // or when new data comes in
     // Arrow Functions are similar visually to C# Lambda Operators
-    this.charactersService.getCharacters().subscribe(result => this.characters = result);
+    this.charactersService.getCharacters().subscribe((result: ICharacterResults) => {
+      this.characters = result.characters;
+      this.total = result.total;
+    });
   }
 
 }
