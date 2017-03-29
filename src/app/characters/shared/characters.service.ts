@@ -4,7 +4,7 @@ import { SettingsService } from '../../settings.service';
 import { Observable } from 'rxjs/Rx';
 // angular doesn't need to inject or use interfaces for html compilation or
 // object construction, so module doesn't care
-import { ICharacterResults, ICharacterSearch } from '../shared/characters-models';
+import { ICharacterResults, ICharacterSearch, ICharacter } from '../shared/characters-models';
 
 @Injectable()
 export class CharactersService {
@@ -49,8 +49,19 @@ export class CharactersService {
         total: data.total
       };
     });
-    //return CHARACTERS;
+    // return CHARACTERS;
   }
+
+  public getCharacter(id: number): Observable<ICharacter> {
+   const params = new URLSearchParams();
+    params.set('apikey', this.settings.apikey);
+    const requestOptions = new RequestOptions();
+    requestOptions.search = params;
+
+    return this.http.get(`http://gateway.marvel.com/v1/public/characters/${id}`, requestOptions)
+      .map(response => <ICharacter>response.json().data.results[0]);
+  }
+
 }
 
 // brief on typescript typing

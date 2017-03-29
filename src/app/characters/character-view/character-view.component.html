@@ -1,3 +1,30 @@
-<p>
+  <!--character is null until the http request finishes, so you
+  have to use a nullable operator unlike Angular 1, Angular 2 will not
+  ignore bad bindings -->
+<!--<p>
   character-view works!
-</p>
+  {{character?.name}}
+</p>-->
+<div class="panel panel-info">
+  <div class="panel-heading">
+
+    <h2>{{character?.name}}</h2>
+
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-6">
+        <figure>
+          <img [src]="getImage(character)" />
+        </figure>
+      </div>
+      <div class="col-sm-6">
+        <div class="well">
+          <p>
+            {{character?.description}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
