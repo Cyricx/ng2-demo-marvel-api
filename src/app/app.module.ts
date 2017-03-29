@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 // 3rd party
-import { AlertModule, PaginationModule } from 'ng2-bootstrap';
+import { AlertModule, PaginationModule, AccordionModule } from 'ng2-bootstrap';
 // local
 import { AppComponent } from './app.component';
 import { CharactersListComponent } from './characters/characters-list/characters-list.component';
@@ -41,7 +41,8 @@ import { CharacterViewComponent } from './characters/character-view/character-vi
     HttpModule,
     AlertModule.forRoot(), // the forRoot method can allow us to pass in config options
     PaginationModule.forRoot(),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AccordionModule.forRoot()
   ],
   providers: [
     CharactersService,

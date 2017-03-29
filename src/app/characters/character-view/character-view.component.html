@@ -25,6 +25,52 @@
             {{character?.description}}
           </p>
         </div>
+        <accordion [closeOthers]="'true'">
+          <accordion-group>
+            <div accordion-heading>
+              <span class="badge pull-right">{{character?.comics?.available}}</span>
+              Comics 
+            </div>
+            <ul class="list-group">
+              <li *ngFor="let comic of character?.comics?.items" class="list-group-item">{{comic?.name}}</li>
+            </ul>
+            <em *ngIf="character?.comics?.items.length === 20">Only displaying the top 20</em>
+            <em *ngIf="character?.comics?.items.length === 0">No comics</em>
+          </accordion-group>
+          <accordion-group>
+            <div accordion-heading>
+              <span class="badge pull-right">{{character?.events?.available}}</span>
+              Events 
+            </div>            
+            <ul class="list-group">
+              <li *ngFor="let event of character?.events?.items" class="list-group-item">{{event?.name}}</li>
+            </ul>
+            <em *ngIf="character?.events?.items.length === 20">Only displaying the top 20</em>
+            <em *ngIf="character?.events?.items.length === 0">No events</em>
+          </accordion-group>
+          <accordion-group>
+            <div accordion-heading>
+              <span class="badge pull-right">{{character?.series?.available}}</span>
+              Series 
+            </div>            
+            <ul class="list-group">
+              <li *ngFor="let series of character?.series?.items" class="list-group-item">{{series?.name}}</li>
+            </ul>
+            <em *ngIf="character?.series?.items.length === 20">Only displaying the top 20</em>
+            <em *ngIf="character?.series?.items.length === 0">No series</em>
+          </accordion-group>
+          <accordion-group>
+            <div accordion-heading>
+              <span class="badge pull-right">{{character?.stories?.available}}</span>
+              Stories 
+            </div>            
+            <ul class="list-group">
+              <li *ngFor="let story of character?.stories?.items" class="list-group-item">{{story?.name}}</li>
+            </ul>
+            <em *ngIf="character?.stories?.items.length === 20">Only displaying the top 20</em>
+            <em *ngIf="character?.stories?.items.length === 0">No stories</em>
+          </accordion-group>
+        </accordion>      
       </div>
     </div>
   </div>
