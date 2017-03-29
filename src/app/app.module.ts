@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
 
 // 3rd party
 import { AlertModule, PaginationModule } from 'ng2-bootstrap';
@@ -12,6 +13,7 @@ import { CharactersListComponent } from './characters/characters-list/characters
 import { CharactersService } from './characters/shared/characters.service'; // cli does not automatically import services
 import { SettingsService } from './settings.service';
 import { HighlightDirective } from './common/highlight.directive';
+import { appRoutes } from './app.routes';
 
 /*
   Components - building blocks of an application (custom html elements)
@@ -36,7 +38,8 @@ import { HighlightDirective } from './common/highlight.directive';
     FormsModule,
     HttpModule,
     AlertModule.forRoot(), // the forRoot method can allow us to pass in config options
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     CharactersService,
