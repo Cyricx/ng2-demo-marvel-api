@@ -34,7 +34,7 @@
     <th>Last Modified</th>
   </tr>
   <!--* is used as a prefix for structural directives like *ngFor and *ngIf-->
-  <tr *ngFor="let character of characters">
+  <tr *ngFor="let character of characters" appHighlight [level]="calculateLevel(character)">
     <td>{{character.id}}</td>
     <td>{{character.name}}</td>
     <td>{{character.comics.available}}</td>

@@ -56,6 +56,26 @@ export class CharactersListComponent implements OnInit {
     this.loadChanged();
   }
 
+  calculateLevel(character: ICharacter) {
+    let level = 0;
+    if (character) {
+      if (character.series) {
+        level += character.series.available;
+      }
+      if (character.comics) {
+        level += character.comics.available;
+      }
+      if (character.stories) {
+        level += character.stories.available;
+      }
+      if (character.events) {
+        level += character.events.available;
+      }
+    }
+    level = level / 4;
+    return level;
+  }
+
   private loadChanged() {
     this.charactersService.getCharacters(this.search).subscribe((result: ICharacterResults) => {
       this.characters = result.characters;
