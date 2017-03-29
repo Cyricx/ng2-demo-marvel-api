@@ -52,3 +52,4 @@
     <td>{{character.modified | date: 'MM/dd/yyyy'}}</td>
   </tr>
 </table>
+<pagination [totalItems]="total" [(ngModel)]="search.currentPage" [itemsPerPage]="search.limit" (pageChanged)="pageChanged($event)"></pagination>

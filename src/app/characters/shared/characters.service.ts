@@ -20,6 +20,7 @@ export class CharactersService {
 
     params.set('nameStartsWith', search.nameStartsWith);
     params.set('limit', search.limit.toString());
+    params.set('offset', ((search.currentPage - 1) * search.limit).toString());
 
     const requestOptions = new RequestOptions();
     requestOptions.search = params;

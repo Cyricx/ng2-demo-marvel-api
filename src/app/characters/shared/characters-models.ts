@@ -22,4 +22,5 @@ export interface ICharacterResults {
 export interface ICharacterSearch {
     nameStartsWith: string;
     limit: number;
+    currentPage: number;
 }

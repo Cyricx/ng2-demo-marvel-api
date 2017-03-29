@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 // 3rd party
-import { AlertModule } from 'ng2-bootstrap';
+import { AlertModule, PaginationModule } from 'ng2-bootstrap';
 // local
 import { AppComponent } from './app.component';
 import { CharactersListComponent } from './characters/characters-list/characters-list.component';
@@ -33,7 +33,8 @@ import { SettingsService } from './settings.service';
     BrowserModule,
     FormsModule,
     HttpModule,
-    AlertModule.forRoot() // the forRoot method can allow us to pass in config options
+    AlertModule.forRoot(), // the forRoot method can allow us to pass in config options
+    PaginationModule.forRoot()
   ],
   providers: [
     CharactersService,

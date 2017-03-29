@@ -11,7 +11,7 @@ import { Subject } from 'rxjs/Rx';
 export class CharactersListComponent implements OnInit {
   characters: ICharacter[];
   total: number;
-  search: ICharacterSearch = { nameStartsWith: 'a', limit: 10 };
+  search: ICharacterSearch = { nameStartsWith: 'a', limit: 10, currentPage: 1 };
   modelChanged: Subject<string> = new Subject<string>();
 
   // services must be injected through constructor injection
@@ -26,6 +26,7 @@ export class CharactersListComponent implements OnInit {
     this.modelChanged.debounceTime(1000).distinctUntilChanged()
       .subscribe((model) => {
         this.search.nameStartsWith = model;
+        this.search.currentPage = 1;
         this.loadChanged();
       });
 
@@ -48,6 +49,11 @@ export class CharactersListComponent implements OnInit {
     // we could immediately fire it off, but that would cause a lot of calls to be made for
     // each keystroke, instead we will us debouncing
     this.modelChanged.next(text);
+  }
+
+  pageChanged(pagingInfo) {
+    this.search.currentPage = pagingInfo.page;
+    this.loadChanged();
   }
 
   private loadChanged() {
