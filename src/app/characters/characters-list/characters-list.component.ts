@@ -42,6 +42,7 @@ export class CharactersListComponent implements OnInit {
 
   limitChanged() {
     // don't care about what the value is, just need to change the data
+    this.search.currentPage = 1;
     this.loadChanged();
   }
 
