@@ -2,7 +2,27 @@
   characters-list works!
 </p>
 {{characters.length}}-->
-Total: {{total}}
+<!--Total: {{total}}-->
+<!--
+  Data binding is no longer automatically two way, instead a different syntax is used for each
+  () data binds from html to controller
+  [] data binds from controller to html
+  [()] is for two way data binding
+-->
+<div class="pull-right">
+  <label for="limit"># of Items</label>
+  <select name="limit" id="limit" [(ngModel)]="search.limit" (ngModelChange)="limitChanged($event)">
+    <option value="10">10</option>
+    <option value="25">25</option>
+    <option value="50">50</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="search">Search</label>
+  <!--Digest cycle no longer runs needlessly, you have to tell it when to run which is a huge performance gain-->
+  <input id="search" name="search" [(ngModel)]="search.nameStartsWith" type="text" (ngModelChange)="searchChanged($event)">
+  Searching for {{search.nameStartsWith}}
+</div>
 <table class="table table-bordered table-striped">
   <tr>
     <th>ID</th>
@@ -17,10 +37,10 @@ Total: {{total}}
   <tr *ngFor="let character of characters">
     <td>{{character.id}}</td>
     <td>{{character.name}}</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>{{character.comics.available}}</td>
+    <td>{{character.stories.available}}</td>
+    <td>{{character.events.available}}</td>
+    <td>{{character.series.available}}</td>
     <!--
       pipes are similar in syntax to angular 1 filters, but the use case is far more specific
 

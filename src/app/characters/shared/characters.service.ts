@@ -4,7 +4,7 @@ import { SettingsService } from '../../settings.service';
 import { Observable } from 'rxjs/Rx';
 // angular doesn't need to inject or use interfaces for html compilation or
 // object construction, so module doesn't care
-import { ICharacterResults } from '../shared/characters-models';
+import { ICharacterResults, ICharacterSearch } from '../shared/characters-models';
 
 @Injectable()
 export class CharactersService {
@@ -12,12 +12,14 @@ export class CharactersService {
   constructor(private http: Http, private settings: SettingsService) { }
 
   // typescript does have private and public, unlike c# the presumed is public
-  getCharacters(): Observable<ICharacterResults> {
+  getCharacters(search: ICharacterSearch): Observable<ICharacterResults> {
 
     // need request options and url parameters
     const params = new URLSearchParams();
     params.set('apikey', this.settings.apikey);
-    params.set('nameStartsWith', 'doctor');
+
+    params.set('nameStartsWith', search.nameStartsWith);
+    params.set('limit', search.limit.toString());
 
     const requestOptions = new RequestOptions();
     requestOptions.search = params;

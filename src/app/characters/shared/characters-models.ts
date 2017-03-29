@@ -18,3 +18,8 @@ export interface ICharacterResults {
     characters: ICharacter[];
     total: number;
 }
+
+export interface ICharacterSearch {
+    nameStartsWith: string;
+    limit: number;
+}
